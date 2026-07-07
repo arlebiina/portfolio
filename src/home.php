@@ -1,157 +1,686 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Profissional Web</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Portfólio.dev</div>
-            <ul class="nav-links">
-                <li><a href="#biografia">Biografia</a></li>
-                <li><a href="#destaques">Destaques</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><button id="btnToggleModo" class="btn-toggle-modo">🤖 Modo Hacker</button></li>
-                <li><a href="https://github.com/" target="_blank" class="git-link">GitHub</a></li>
-            </ul>
-        </div>
-    </nav>
+/* ==========================================================================
+   VARIÁVEIS DE SISTEMA (PALETAS DE CORES E FONTES)
+   ========================================================================== */
+:root {
+    --bg-principal: #CBEBFA;       
+    --bg-card: #fdfcf7;           
+    --roxo-principal: #E05EA3;    
+    --roxo-hover: #C23B83;        
+    --texto-claro: #1A1D1A;       
+    --texto-mutado: #2A363B;      
+    --borda-suave: rgba(0, 0, 0, 0.08);
     
-    <header id="biografia" class="hero-section">
-        <div class="hero-content">
-            <h1>Olá, eu sou a Izadora</h1>
-            <p class="subtitle">Desenvolvedora Web | Arquitetura MVC</p>
-            <p class="bio-text">
-                Desenvolvedora apaixonada por tecnologia e focada em construir aplicações estruturadas, limpas e performáticas. Este espaço reúne as competências e projetos práticos que desenvolvi ao longo do meu percurso de aprendizado em TI utilizando o padrão arquitetural Model-View-Controller.
-            </p>
-            <div class="hero-buttons">
-                <a href="#destaques" class="btn-primary">Ver Projetos</a>
-                <a href="#contato" class="btn-secondary">Fale Comigo</a>
-            </div>
-        </div>
-    </header>
+    font-family: 'DotGothic16', sans-serif;
 
-    <main class="caderno-container">
-       
-        <div class="bloco-pagina">
-            <div class="sistema-espiral">
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-            </div>
-            <section id="destaques" class="folha-caderno">
-                <h2 class="section-title">Projetos de Destaque</h2>
-                
-                <div class="filtro-container">
-                    <button class="btn-filtro ativo" data-filter="todos">[ Todos ]</button>
-                    <button class="btn-filtro" data-filter="php-mvc">[ PHP / MVC ]</button>
-                    <button class="btn-filtro" data-filter="front-end">[ Front-End ]</button>
-                    <button class="btn-filtro" data-filter="banco-dados">[ Bancos de Dados ]</button>
-                </div>
+    --janela-verde: linear-gradient(0deg, #FFFFFF 0%, #D3FFB0 100%);
+    --janela-rosa: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
 
-                <div class="projects-grid" id="grelhaProjetos">
-                    <div class="project-card" data-category="php-mvc">
-                        <div>
-                            <h3>Sistema de E-Commerce</h3>
-                            <p>Plataforma completa desenvolvida seguindo o padrão estrito de arquitetura MVC com rotas dinâmicas.</p>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tag">PHP</span>
-                            <span class="tag">MVC</span>
-                            <span class="tag">MySQL</span>
-                        </div>
-                    </div>
+    --player-bg: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
+    --player-titulo-bg: linear-gradient(180deg, #CBEBFA 0%, #FFFFFF 100%);
+    --player-musica-ativa: #FFF5C3;
 
-                    <div class="project-card" data-category="front-end">
-                        <div>
-                            <h3>Dashboard Interativo</h3>
-                            <p>Interface responsiva para gerenciamento de dados e métricas em tempo real com animações fluidas.</p>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">API</span>
-                        </div>
-                    </div>
+    --argola-gradiente: linear-gradient(90deg, #2b2b2b 0%, #737373 12%, #f5f5f5 35%, #ffffff 45%, #9c9c9c 70%, #444444 88%, #1c1c1c 100%);
+    --argola-sombra: drop-shadow(3px 5px 6px rgba(40, 45, 55, 0.25)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
+}
 
-                    <div class="project-card" data-category="banco-dados">
-                        <div>
-                            <h3>Modelagem de Banco de Dados</h3>
-                            <p>Estruturação de tabelas, triggers e procedures otimizadas para alta volumetria de requisições.</p>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tag">SQL</span>
-                            <span class="tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+/* ==========================================================================
+   ESTRUTURA COMPORTAMENTAL: MODO HACKER
+   ========================================================================== */
+body.modo-hacker {
+    --bg-principal: #020202;
+    --bg-card: #050d05;
+    --roxo-principal: #00ff41;    
+    --roxo-hover: #00ff41;
+    --texto-claro: #00ff41;
+    --texto-mutado: #00ff41;       
+    --borda-suave: #004400;
+    font-family: 'Courier New', Courier, monospace !important;
 
-        <div class="bloco-pagina">
-            <div class="sistema-espiral">
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-            </div>
-            <section id="contato" class="folha-caderno">
-                <h2 class="section-title">Área de Contato</h2>
-                <div class="contato-container">
-                    <form action="index.php?action=contato" method="POST">
-                        <div class="form-group">
-                            <label for="nome">Nome completo</label>
-                            <input type="text" id="nome" name="nome" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail para retorno</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensagem">Sua mensagem</label>
-                            <textarea id="mensagem" name="mensagem" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Enviar Mensagem (Github)</button>
-                    </form>
-                </div>
-            </section>
-        </div>
+    --player-bg: #050d05;
+    --player-titulo-bg: transparent;
+    --player-musica-ativa: rgba(0, 255, 65, 0.2);
 
-    </main>
+    --argola-gradiente: linear-gradient(90deg, #002200 0%, #008f11 15%, #00ff41 40%, #ffffff 50%, #00ff41 65%, #005500 85%, #001100 100%);
+    --argola-sombra: drop-shadow(0px 0px 12px rgba(0, 255, 65, 0.85));
+}
 
-    <footer class="contador-cliques">
-        <p>Interação com o portfólio: <span id="numCliques">0</span> 🌟</p>
-    </footer>
+/* ==========================================================================
+   RESETS E CONFIGURAÇÕES GERAIS DO DOCUMENTO
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-    <div class="player-icone-gatilho" id="playerGatilho"></div>
+body {
+    background-color: var(--bg-principal);
+    background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 0);
+    background-size: 16px 16px;
+    color: var(--texto-claro);
+    line-height: 1.7; 
+    font-size: 14px;  
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    <div class="janela-player esconde-player" id="janelaMvPlayer">
-        <div class="barra-superior">
-            <span class="titulo-phoning">📺 NewJeans Player</span>
-            <div class="botoes-janela">
-                <span class="botao-controle" id="btnFecharPlayer">✕</span> 
-                <span class="botao-controle">─</span> 
-                <span class="botao-controle">⬜</span>
-            </div>
-        </div>
-        
-        <div class="container-video-embed">
-            <iframe id="videoIframe" src="https://www.youtube.com/embed/js1CtxSY38I?enablejsapi=1" title="NewJeans Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        
-        <div class="menu-playlist" id="listaPlaylistGeral"></div>
-    </div>
+body.modo-hacker {
+    background-image: radial-gradient(rgba(0,255,65,0.04) 1px, transparent 0);
+}
 
-    <script src="js/script.js"></script>
-</body>
-</html>
+/* ==========================================================================
+   BARRA DE NAVEGAÇÃO (NAVBAR)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(203, 235, 250, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px dashed var(--roxo-principal);
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+body.modo-hacker .navbar {
+    background-color: rgba(2, 2, 2, 0.9);
+    border-bottom: 2px dashed var(--roxo-principal);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--texto-claro);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--texto-mutado);
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover { 
+    color: var(--roxo-principal); 
+}
+
+.btn-toggle-modo {
+    background: #ffffff;
+    border: 2px solid var(--texto-claro);
+    color: var(--texto-claro);
+    padding: 6px 14px;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px var(--texto-claro);
+}
+
+.btn-toggle-modo:hover { 
+    background-color: var(--roxo-principal); 
+    color: #ffffff;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--texto-claro);
+}
+
+body.modo-hacker .btn-toggle-modo { 
+    background: none; 
+    color: var(--roxo-principal); 
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+.git-link {
+    background-color: #FFAEE3 !important;
+    color: #1A1D1A !important;
+    padding: 6px 14px !important;
+    border-radius: 8px;
+    border: 2px solid var(--texto-claro);
+    box-shadow: 2px 2px 0px var(--texto-claro);
+}
+.git-link:hover { 
+    background-color: var(--roxo-principal) !important; 
+    color: #ffffff !important;
+}
+
+body.modo-hacker .git-link { 
+    background: none !important; 
+    color: var(--roxo-principal) !important; 
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   SEÇÃO HERO / SEÇÃO BIOGRAFIA
+   ========================================================================= */
+.hero-section {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 160px 20px 60px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--texto-claro);
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    color: var(--roxo-hover); 
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+body.modo-hacker .subtitle {
+    color: var(--roxo-principal);
+}
+
+.bio-text {
+    font-size: 1.25rem;
+    color: var(--texto-mutado); 
+    font-weight: bold;
+    max-width: 760px;
+    margin: 0 auto 35px auto;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-primary, .btn-secondary {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.btn-primary { 
+    background-color: #FFAEE3; 
+    color: #1A1D1A; 
+    border: 2px solid var(--texto-claro);
+    box-shadow: 3px 3px 0px var(--texto-claro);
+}
+.btn-primary:hover { 
+    background-color: var(--roxo-principal);
+    color: white;
+}
+
+.btn-secondary { 
+    border: 2px solid var(--texto-claro); 
+    color: var(--texto-claro); 
+    background: #fff;
+    box-shadow: 3px 3px 0px var(--texto-claro);
+}
+.btn-secondary:hover { 
+    background-color: var(--bg-principal); 
+}
+
+body.modo-hacker .btn-primary,
+body.modo-hacker .btn-secondary {
+    background: none;
+    color: var(--roxo-principal);
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   ESTRUTURA DO CADERNO (FOLHAS E ESPIRAIS)
+   ========================================================================== */
+.caderno-container {
+    max-width: 840px;
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+}
+
+.bloco-pagina {
+    margin-bottom: 80px; 
+    position: relative;
+    perspective: 1000px;
+}
+
+.sistema-espiral {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    position: absolute;
+    top: -22px; 
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 0 40px;
+}
+
+.conjunto-argola {
+    position: relative;
+    width: 16px;
+    height: 45px;
+}
+
+.argola-metalica {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--argola-gradiente);
+    border-radius: 8px;
+    filter: var(--argola-sombra);
+    transform-origin: top center;
+    transition: transform 0.4s ease-out;
+}
+
+.furo-papel {
+    position: absolute;
+    bottom: -6px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 6px;
+    background-color: #1c1714; 
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.85);
+    z-index: -1;
+}
+
+body.modo-hacker .furo-papel { background-color: #000000; }
+
+.folha-caderno {
+    background: var(--bg-card);
+    padding: 60px 50px 50px 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(45, 55, 65, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    transition: transform 0.5s ease, box-shadow 0.4s ease, clip-path 0.4s ease;
+}
+
+/* Ajuste preciso para as duas folhas restantes alternarem cor e rotação */
+.bloco-pagina:nth-child(1) .folha-caderno { background: var(--janela-verde); transform: rotate(-0.4deg); }
+.bloco-pagina:nth-child(2) .folha-caderno { background: var(--janela-rosa); transform: rotate(0.4deg); }
+
+.folha-caderno::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 42px;
+    width: 2px;
+    height: 100%;
+    background-color: rgba(255, 174, 227, 0.6); 
+}
+
+body.modo-hacker .folha-caderno,
+body.modo-hacker .bloco-pagina:nth-child(1) .folha-caderno,
+body.modo-hacker .bloco-pagina:nth-child(2) .folha-caderno { 
+    background: var(--bg-card) !important; 
+    border-color: var(--borda-suave);
+}
+body.modo-hacker .folha-caderno::before { background-color: rgba(0, 255, 65, 0.2); }
+
+.folha-caderno::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, transparent 50%, rgba(47, 51, 45, 0.12) 55%, var(--bg-principal) 65%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.bloco-pagina:hover .folha-caderno {
+    transform: translateY(-4px) scale(1.002) rotate(0deg) !important;
+    box-shadow: 0 15px 35px rgba(45, 55, 65, 0.15);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%);
+}
+
+.bloco-pagina:hover .folha-caderno::after {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, transparent 50%, rgba(60, 50, 40, 0.15) 51%, #ffffff 55%, #fff0fa 80%);
+}
+
+.bloco-pagina:hover .conjunto-argola:nth-child(odd) .argola-metalica { animation: pendulo 1.2s ease-in-out infinite alternate; }
+.bloco-pagina:hover .conjunto-argola:nth-child(even) .argola-metalica { animation: penduloInverso 1.4s ease-in-out infinite alternate; }
+
+@keyframes pendulo { 0% { transform: rotate(-3deg); } 100% { transform: rotate(4deg); } }
+@keyframes penduloInverso { 0% { transform: rotate(3deg); } 100% { transform: rotate(-4deg); } }
+
+body.modo-hacker .folha-caderno { clip-path: none !important; }
+body.modo-hacker .bloco-pagina:hover .folha-caderno::after { width: 0px !important; height: 0px !important; }
+
+/* ==========================================================================
+   ELEMENTOS DE CONTEÚDO DA PÁGINA (FILTROS E PROJETOS)
+   ========================================================================== */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--texto-claro);
+    margin-bottom: 25px;
+    font-weight: bold;
+    border-bottom: 2px dashed var(--texto-claro);
+    padding-bottom: 6px;
+    display: inline-block;
+}
+
+.filtro-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-filtro {
+    background: none;
+    border: none;
+    color: var(--texto-mutado);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.2s;
+}
+
+.btn-filtro.ativo, .btn-filtro:hover {
+    color: var(--roxo-principal);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--texto-claro);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    box-shadow: 3px 3px 0px var(--texto-claro);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--texto-claro);
+    background: #ffffff;
+}
+
+body.modo-hacker .project-card {
+    background: transparent;
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+body.modo-hacker .project-card:hover {
+    background: rgba(0, 255, 65, 0.05);
+}
+
+.project-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+.project-card p { font-size: 0.95rem; color: var(--texto-mutado); }
+
+.tech-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag {
+    background: #ffffff;
+    border: 1px solid var(--texto-claro);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+body.modo-hacker .tag {
+    background: transparent;
+    border-color: var(--roxo-principal);
+}
+
+/* ==========================================================================
+   ÁREA DE CONTATO E FORMULÁRIOS
+   ========================================================================== */
+.contato-container { max-width: 480px; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 0.95rem; font-weight: bold; color: var(--texto-claro); margin-bottom: 4px; }
+
+.form-control { 
+    width: 100%; 
+    padding: 10px 14px; 
+    border: 2px solid var(--texto-claro); 
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    font-family: inherit; 
+    font-size: 1rem; 
+    color: var(--texto-claro); 
+}
+textarea.form-control { min-height: 110px; resize: vertical; }
+
+.btn-submit { 
+    background-color: #FFAEE3; 
+    color: #1A1D1A; 
+    border: 2px solid var(--texto-claro); 
+    padding: 10px 22px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px var(--texto-claro);
+    transition: all 0.2s ease;
+}
+.btn-submit:hover { 
+    background-color: var(--roxo-principal); 
+    color: white;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px var(--texto-claro);
+}
+
+body.modo-hacker .btn-submit { 
+    background: none; 
+    color: var(--roxo-principal); 
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+/* RODAPÉ */
+.contador-cliques { text-align: center; padding: 40px; font-size: 1rem; font-weight: bold; color: var(--texto-mutado); }
+
+/* ==========================================================================
+   CD EM CORES SÓLIDAS GERADO VIA CSS (Cinza, Rosa, Verde, Azul, Branco)
+   ========================================================================== */
+.player-icone-gatilho#playerGatilho {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 70px !important;
+    height: 70px !important;
+    min-width: 70px !important;
+    min-height: 70px !important;
+    border-radius: 50% !important;
+    border: 3px solid #1A1D1A !important;
+    box-shadow: 4px 4px 0px #1A1D1A !important;
+    z-index: 999999 !important;
+    cursor: pointer !important;
+    
+    background: radial-gradient(
+        circle,
+        #1A1D1A 0% 15%,         
+        #ffffff 15% 24%,        
+        #4A90E2 24% 45%,        
+        #7ED321 45% 64%,        
+        #E05EA3 64% 83%,        
+        #9B9B9B 83% 100%        
+    ) !important;
+    
+    animation: rodarCDSolido 7s linear infinite !important;
+    transition: transform 0.2s ease !important;
+}
+
+@keyframes rodarCDSolido {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.player-icone-gatilho#playerGatilho:hover {
+    transform: scale(1.08) !important;
+}
+
+/* CD no Modo Hacker */
+body.modo-hacker .player-icone-gatilho#playerGatilho {
+    background: radial-gradient(circle, #020202 0% 25%, #00ff41 25% 100%) !important;
+    border-color: #00ff41 !important;
+    box-shadow: 0px 0px 12px #00ff41 !important;
+}
+
+/* ==========================================================================
+   JANELA DO EMBED PLAYER DE VÍDEO (POP-UP)
+   ========================================================================== */
+.janela-player {
+    position: fixed;
+    bottom: 100px; 
+    right: 20px;
+    background: var(--player-bg);
+    border: 2px solid var(--texto-claro);
+    border-radius: 14px;
+    width: 300px;
+    padding: 14px;
+    box-shadow: 6px 6px 0px var(--texto-claro);
+    z-index: 9999;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: bottom right;
+}
+
+.janela-player.esconde-player {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    pointer-events: none !important;
+}
+
+body.modo-hacker .janela-player {
+    box-shadow: none;
+    border-color: var(--roxo-principal);
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.titulo-phoning {
+    background: var(--player-titulo-bg);
+    border: 1px solid var(--texto-claro);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--texto-claro);
+}
+
+body.modo-hacker .titulo-phoning { border-color: var(--roxo-principal); }
+
+.botoes-janela { display: flex; gap: 4px; }
+
+.botao-controle {
+    border: 1px solid var(--texto-claro);
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    user-select: none;
+}
+
+body.modo-hacker .botao-controle {
+    background-color: transparent;
+    color: var(--roxo-principal);
+    border-color: var(--roxo-principal);
+}
+
+.container-video-embed {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 2px solid var(--texto-claro);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000000;
+    margin-bottom: 10px;
+}
+
+body.modo-hacker .container-video-embed { border-color: var(--roxo-principal); }
+.container-video-embed iframe { width: 100%; height: 100%; display: block; }
+
+.menu-playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 110px;
+    overflow-y: auto;
+}
+
+/* Regra recuperada para faixas da playlist */
+.item-musica-playlist {
+    padding: 6px 10px;
+    border: 1px dashed var(--texto-claro);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.item-musica-playlist.ativa { background-color: var(--player-musica-ativa); }
+
+body.modo-hacker .item-musica-playlist { border-color: var(--roxo-principal); }
+
+/* ==========================================================================
+   RESPONSIVIDADE GERAL (MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .folha-caderno { padding: 40px 20px; transform: none !important; clip-path: none !important; }
+    .folha-caderno::after { display: none; }
+    .sistema-espiral { display: none; }
+    .player-icone-gatilho#playerGatilho { bottom: 15px !important; right: 15px !important; width: 60px !important; height: 60px !important; min-width: 60px !important; min-height: 60px !important; }
+    .janela-player { bottom: 90px; right: 15px; width: 260px; }
+}
