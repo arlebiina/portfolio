@@ -15,7 +15,6 @@
             <ul class="nav-links">
                 <li><a href="#biografia">Biografia</a></li>
                 <li><a href="#destaques">Destaques</a></li>
-                <li><a href="#status-rpg">Habilidades</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><button id="btnToggleModo" class="btn-toggle-modo">🤖 Modo Hacker</button></li>
                 <li><a href="https://github.com/" target="_blank" class="git-link">GitHub</a></li>
@@ -106,57 +105,6 @@
                 <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
                 <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
             </div>
-            <section id="status-rpg" class="folha-caderno">
-                <h2 class="section-title">Histórico Acadêmico & Status</h2>
-                
-                <div class="rpg-status-container">
-                    <div class="status-row">
-                        <span class="status-label">PHP (Back-end)</span>
-                        <div class="status-bar">
-                            <span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">Arquitetura MVC</span>
-                        <div class="status-bar">
-                            <span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span>
-                        </div>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">JavaScript</span>
-                        <div class="status-bar">
-                            <span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel">❤️</span><span class="coracao-pixel vazio">🖤</span>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="inventario-title" style="margin-top: 20px;">🎒 Inventário de Ferramentas</h3>
-                <div class="inventario-grid">
-                    <div class="slot-inventario" title="Git">
-                        <span class="item-icon">🐙</span>
-                        <span class="item-name">Git</span>
-                    </div>
-                    <div class="slot-inventario" title="VS Code">
-                        <span class="item-icon">💻</span>
-                        <span class="item-name">VS Code</span>
-                    </div>
-                    <div class="slot-inventario" title="Docker">
-                        <span class="item-icon">🐋</span>
-                        <span class="item-name">Docker</span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="bloco-pagina">
-            <div class="sistema-espiral">
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-                <div class="conjunto-argola"><div class="argola-metalica"></div><div class="furo-papel"></div></div>
-            </div>
             <section id="contato" class="folha-caderno">
                 <h2 class="section-title">Área de Contato</h2>
                 <div class="contato-container">
@@ -185,9 +133,7 @@
         <p>Interação com o portfólio: <span id="numCliques">0</span> 🌟</p>
     </footer>
 
-<div class="player-icone-gatilho" id="playerGatilho">
-    <img src="1900x1900-000000-80-0-0.jpg" alt="NewJeans PPG CD">
-</div>
+    <div class="player-icone-gatilho" id="playerGatilho"></div>
 
     <div class="janela-player esconde-player" id="janelaMvPlayer">
         <div class="barra-superior">
