@@ -1,0 +1,865 @@
+/* ==========================================================================
+   PALETA ESTILO TOKKING / Y2K KAWAII (Padrão)
+   ========================================================================== */
+:root {
+    --bg-principal: #CBEBFA;       
+    --bg-card: #fdfcf7;           
+    --roxo-principal: #E05EA3;    
+    --roxo-hover: #C23B83;        
+    --texto-claro: #1A1D1A;       
+    --texto-mutado: #2A363B;      
+    --borda-suave: rgba(0, 0, 0, 0.08);
+    
+    font-family: 'DotGothic16', sans-serif;
+
+    --janela-verde: linear-gradient(0deg, #FFFFFF 0%, #D3FFB0 100%);
+    --janela-rosa: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
+
+    --player-bg: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
+    --player-titulo-bg: linear-gradient(180deg, #CBEBFA 0%, #FFFFFF 100%);
+    --player-musica-ativa: #FFF5C3;
+    --furo-cd-bg: #CBEBFA;
+
+    --argola-gradiente: linear-gradient(90deg, #2b2b2b 0%, #737373 12%, #f5f5f5 35%, #ffffff 45%, #9c9c9c 70%, #444444 88%, #1c1c1c 100%);
+    --argola-sombra: drop-shadow(3px 5px 6px rgba(40, 45, 55, 0.25)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+/* ==========================================================================
+   TRANSFORMAÇÃO MODO HACKER
+   ========================================================================== */
+body.modo-hacker {
+    --bg-principal: #020202;
+    --bg-card: #050d05;
+    --roxo-principal: #00ff41;    
+    --roxo-hover: #00ff41;
+    --texto-claro: #00ff41;
+    --texto-mutado: #00ff41;       
+    --borda-suave: #004400;
+    font-family: 'Courier New', Courier, monospace !important;
+
+    --player-bg: #050d05;
+    --player-titulo-bg: transparent;
+    --player-musica-ativa: rgba(0, 255, 65, 0.2);
+    --furo-cd-bg: #020202;
+
+    --argola-gradiente: linear-gradient(90deg, #002200 0%, #008f11 15%, #00ff41 40%, #ffffff 50%, #00ff41 65%, #005500 85%, #001100 100%);
+    --argola-sombra: drop-shadow(0px 0px 12px rgba(0, 255, 65, 0.85));
+}
+
+/* ==========================================================================
+   ESTILOS GERAIS DE RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='18' font-size='16'>🐰</text></svg>"), auto;
+}
+
+body {
+    background-color: var(--bg-principal);
+    background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 0);
+    background-size: 16px 16px;
+    color: var(--texto-claro);
+    line-height: 1.7; 
+    font-size: 14px;  
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.modo-hacker {
+    background-image: radial-gradient(rgba(0,255,65,0.04) 1px, transparent 0);
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGAÇÃO (NAVBAR)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(203, 235, 250, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px dashed var(--roxo-principal);
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+body.modo-hacker .navbar {
+    background-color: rgba(2, 2, 2, 0.9);
+    border-bottom: 2px dashed var(--roxo-principal);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--texto-claro);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--texto-mutado);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover { 
+    color: var(--roxo-principal); 
+}
+
+.btn-toggle-modo {
+    background: #ffffff;
+    border: 2px solid var(--texto-claro);
+    color: var(--texto-claro);
+    padding: 6px 14px;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px var(--texto-claro);
+}
+
+.btn-toggle-modo:hover { 
+    background-color: var(--roxo-principal); 
+    color: #ffffff;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--texto-claro);
+}
+
+body.modo-hacker .btn-toggle-modo { 
+    background: none; 
+    color: var(--roxo-principal); 
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+.git-link {
+    background-color: #FFAEE3 !important;
+    color: #1A1D1A !important;
+    padding: 6px 14px !important;
+    border-radius: 8px;
+    border: 2px solid var(--texto-claro);
+    box-shadow: 2px 2px 0px var(--texto-claro);
+}
+.git-link:hover { 
+    background-color: var(--roxo-principal) !important; 
+    color: #ffffff !important;
+}
+
+body.modo-hacker .git-link { 
+    background: none !important; 
+    color: var(--roxo-principal) !important; 
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   SEÇÃO HERO / BIOGRAFIA
+   ========================================================================== */
+.hero-section {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 160px 20px 60px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--texto-claro);
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    color: var(--roxo-hover); 
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+body.modo-hacker .subtitle {
+    color: var(--roxo-principal);
+}
+
+.bio-text {
+    font-size: 1.25rem;
+    color: var(--texto-mutado); 
+    font-weight: bold;
+    max-width: 760px;
+    margin: 0 auto 35px auto;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-primary, .btn-secondary {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.btn-primary { 
+    background-color: #FFAEE3; 
+    color: #1A1D1A; 
+    border: 2px solid var(--texto-claro);
+    box-shadow: 3px 3px 0px var(--texto-claro);
+}
+.btn-primary:hover { 
+    background-color: var(--roxo-principal);
+    color: white;
+}
+
+.btn-secondary { 
+    border: 2px solid var(--texto-claro); 
+    color: var(--texto-claro); 
+    background: #fff;
+    box-shadow: 3px 3px 0px var(--texto-claro);
+}
+.btn-secondary:hover { 
+    background-color: var(--bg-principal); 
+}
+
+body.modo-hacker .btn-primary,
+body.modo-hacker .btn-secondary {
+    background: none;
+    color: var(--roxo-principal);
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   ESTRUTURA DO CADERNO (FOLHAS E ESPIRAIS)
+   ========================================================================== */
+.caderno-container {
+    max-width: 840px;
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+}
+
+.bloco-pagina {
+    margin-bottom: 80px; 
+    position: relative;
+    perspective: 1000px;
+}
+
+.sistema-espiral {
+    display: flex;
+    justify-content: center;
+    gap: 65px;
+    position: absolute;
+    top: -22px; 
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 0 60px;
+}
+
+.conjunto-argola {
+    position: relative;
+    width: 16px;
+    height: 45px;
+}
+
+.argola-metalica {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--argola-gradiente);
+    border-radius: 8px;
+    filter: var(--argola-sombra);
+    transform-origin: top center;
+    transition: transform 0.4s ease-out;
+}
+
+.furo-papel {
+    position: absolute;
+    bottom: -6px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 6px;
+    background-color: #1c1714; 
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.85);
+    z-index: -1;
+}
+
+body.modo-hacker .furo-papel { background-color: #000000; }
+
+.folha-caderno {
+    background: var(--bg-card);
+    padding: 60px 50px 50px 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(45, 55, 65, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    transition: transform 0.5s ease, box-shadow 0.4s ease, clip-path 0.4s ease;
+}
+
+.bloco-pagina:nth-child(odd) .folha-caderno { background: var(--janela-verde); }
+.bloco-pagina:nth-child(even) .folha-caderno { background: var(--janela-rosa); }
+
+.folha-caderno::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 42px;
+    width: 2px;
+    height: 100%;
+    background-color: rgba(255, 174, 227, 0.6); 
+}
+
+body.modo-hacker .folha-caderno,
+body.modo-hacker .bloco-pagina:nth-child(odd) .folha-caderno,
+body.modo-hacker .bloco-pagina:nth-child(even) .folha-caderno { 
+    background: var(--bg-card) !important; 
+    border-color: var(--borda-suave);
+}
+body.modo-hacker .folha-caderno::before { background-color: rgba(0, 255, 65, 0.2); }
+
+.folha-caderno::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, transparent 50%, rgba(47, 51, 45, 0.12) 55%, var(--bg-principal) 65%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.bloco-pagina:nth-child(odd) .folha-caderno { transform: rotate(-0.4deg); }
+.bloco-pagina:nth-child(even) .folha-caderno { transform: rotate(0.4deg); }
+
+.bloco-pagina:hover .folha-caderno {
+    transform: translateY(-4px) scale(1.002) rotate(0deg) !important;
+    box-shadow: 0 15px 35px rgba(45, 55, 65, 0.15);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%);
+}
+
+.bloco-pagina:hover .folha-caderno::after {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, transparent 50%, rgba(60, 50, 40, 0.15) 51%, #ffffff 55%, #fff0fa 80%);
+}
+
+.bloco-pagina:hover .conjunto-argola:nth-child(odd) .argola-metalica { animation: pendulo 1.2s ease-in-out infinite alternate; }
+.bloco-pagina:hover .conjunto-argola:nth-child(even) .argola-metalica { animation: penduloInverso 1.4s ease-in-out infinite alternate; }
+
+@keyframes pendulo { 0% { transform: rotate(-3deg); } 100% { transform: rotate(4deg); } }
+@keyframes penduloInverso { 0% { transform: rotate(3deg); } 100% { transform: rotate(-4deg); } }
+
+body.modo-hacker .folha-caderno { clip-path: none !important; }
+body.modo-hacker .bloco-pagina:hover .folha-caderno::after { width: 0px !important; height: 0px !important; }
+
+/* ==========================================================================
+   SEÇÕES INTERNAS, TITULOS E TAGS
+   ========================================================================== */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--texto-claro);
+    margin-bottom: 25px;
+    font-weight: bold;
+    border-bottom: 2px dashed var(--texto-claro);
+    padding-bottom: 6px;
+    display: inline-block;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    color: var(--texto-claro);
+    margin-bottom: 8px;
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: var(--texto-mutado);
+    font-weight: bold;
+}
+
+.project-card:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px var(--texto-claro);
+}
+
+body.modo-hacker .project-card { 
+    border-color: var(--roxo-principal); 
+    background-color: transparent; 
+    box-shadow: none !important;
+}
+
+.tech-tags { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 6px; 
+    margin-top: 15px; 
+}
+
+.tag { 
+    background: linear-gradient(180deg, #FFAEE3 0%, #FFFFFF 100%);
+    color: #1A1D1A; 
+    padding: 4px 10px; 
+    border-radius: 6px; 
+    border: 1px solid var(--texto-claro);
+    font-size: 0.85rem; 
+    font-weight: bold;
+    display: inline-block;
+    animation: flutuaTag 3s ease-in-out infinite;
+}
+
+body.modo-hacker .tag { 
+    background: rgba(0, 255, 65, 0.1) !important; 
+    border-color: var(--roxo-principal);
+    color: var(--roxo-principal);
+}
+
+@keyframes flutuaTag {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* ==========================================================================
+   SISTEMA DE FILTRO DINÂMICO DE PROJETOS
+   ========================================================================== */
+.filtro-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.btn-filtro {
+    background: transparent;
+    border: 2px solid var(--texto-claro);
+    color: var(--texto-claro);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-filtro:hover, .btn-filtro.ativo {
+    background-color: var(--roxo-principal);
+    color: #ffffff;
+    box-shadow: 2px 2px 0px var(--texto-claro);
+    transform: translate(-1px, -1px);
+}
+
+body.modo-hacker .btn-filtro {
+    border-color: var(--roxo-principal);
+    color: var(--roxo-principal);
+}
+body.modo-hacker .btn-filtro.ativo, body.modo-hacker .btn-filtro:hover {
+    background-color: rgba(0, 255, 65, 0.2);
+    color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 2px dashed var(--texto-claro);
+    border-radius: 8px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
+}
+
+.project-card.escondido {
+    opacity: 0 !important;
+    transform: scale(0.8) !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+/* ==========================================================================
+   STATUS DE RPG (HABILIDADES) E INVENTÁRIO
+   ========================================================================== */
+.rpg-status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    padding-bottom: 8px;
+}
+
+body.modo-hacker .status-row {
+    border-bottom-color: rgba(0, 255, 65, 0.2);
+}
+
+.status-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--texto-claro);
+}
+
+.status-bar {
+    display: flex;
+    gap: 4px;
+}
+
+.coracao-pixel {
+    font-size: 1.3rem;
+    display: inline-block;
+    user-select: none;
+    animation: pulsaCoracao 2s infinite ease-in-out;
+}
+
+.coracao-pixel.vazio {
+    opacity: 0.4;
+    animation: none;
+}
+
+body.modo-hacker .coracao-pixel {
+    text-shadow: 0 0 5px var(--roxo-principal);
+}
+
+@keyframes pulsaCoracao {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.inventario-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--texto-claro);
+}
+
+.inventario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+}
+
+.slot-inventario {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid var(--texto-claro);
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 0px var(--texto-claro);
+}
+
+.slot-inventario:hover {
+    background-color: #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--texto-claro);
+}
+
+body.modo-hacker .slot-inventario {
+    background-color: transparent;
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+body.modo-hacker .slot-inventario:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+}
+
+.item-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.item-name {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ==========================================================================
+   ÁREA DE CONTATO E FORMULÁRIOS
+   ========================================================================== */
+.contato-container { max-width: 480px; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 0.95rem; font-weight: bold; color: var(--texto-claro); margin-bottom: 4px; }
+
+.form-control { 
+    width: 100%; 
+    padding: 10px 14px; 
+    border: 2px solid var(--texto-claro); 
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    font-family: inherit; 
+    font-size: 1rem; 
+    font-weight: bold;
+    color: var(--texto-claro); 
+}
+textarea.form-control { min-height: 110px; resize: vertical; }
+
+.btn-submit { 
+    background-color: #FFAEE3; 
+    color: #1A1D1A; 
+    border: 2px solid var(--texto-claro); 
+    padding: 10px 22px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px var(--texto-claro);
+    transition: all 0.2s ease;
+}
+.btn-submit:hover { 
+    background-color: var(--roxo-principal); 
+    color: white;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px var(--texto-claro);
+}
+
+body.modo-hacker .btn-submit { 
+    background: none; 
+    color: var(--roxo-principal); 
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+/* RODAPÉ E TRILHA */
+.contador-cliques { 
+    text-align: center; 
+    padding: 40px; 
+    font-size: 1rem; 
+    font-weight: bold;
+    color: var(--texto-mutado); 
+}
+#numCliques { font-weight: bold; color: var(--roxo-principal); }
+
+.particula-trilha {
+    position: fixed;
+    pointer-events: none;
+    font-size: 15px;
+    z-index: 10000;
+    user-select: none;
+    animation: quedaParticula 0.8s linear forwards;
+}
+
+@keyframes quedaParticula {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--mdx), 35px) scale(0.4); opacity: 0; }
+}
+
+/* ==========================================================================
+   RESET FORÇADO DEFINITIVO PARA O CD GIRATÓRIO (Evita bugs com imagens gigantes)
+   ========================================================================== */
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DO CD (MOBILE & DESKTOP)
+   ========================================================================== */
+
+/* 1. Força o botão a virar uma bolinha fixa na tela */
+div/* Procure por essa regra no final do seu style.css e substitua por esta: */
+#playerGatilho.player-icone-gatilho img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    
+    /* MUDANÇA AQUI: Faz a arte pixel art inteira encolher para aparecer na bolinha */
+    object-fit: contain !important; 
+    background-color: #79c3e4 !important; /* Um azul combinando com a imagem de fundo */
+    
+    border-radius: 50% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+    animation: girarCD 12s linear infinite !important;
+}
+
+/* ==========================================================================
+   JANELA DO PLAYER DE VÍDEO (ESTILO PIP)
+   ========================================================================== */
+.janela-player {
+    position: fixed;
+    bottom: 95px; 
+    right: 20px;
+    background: var(--player-bg);
+    border: 2px solid var(--texto-claro);
+    border-radius: 14px;
+    width: 300px;
+    padding: 14px;
+    box-shadow: 6px 6px 0px var(--texto-claro);
+    z-index: 9999;
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: bottom right;
+}
+
+.janela-player.esconde-player {
+    opacity: 0 !important;
+    transform: scale(0) translate(30px, 30px) !important;
+    pointer-events: none !important;
+}
+
+body.modo-hacker .janela-player {
+    box-shadow: none;
+    border-color: var(--roxo-principal);
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.titulo-phoning {
+    background: var(--player-titulo-bg);
+    border: 1px solid var(--texto-claro);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--texto-claro);
+}
+
+body.modo-hacker .titulo-phoning { border-color: var(--roxo-principal); }
+
+.botoes-janela { display: flex; gap: 4px; }
+
+.botao-controle {
+    border: 1px solid var(--texto-claro);
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+}
+
+body.modo-hacker .botao-controle {
+    background-color: transparent;
+    color: var(--roxo-principal);
+    border-color: var(--roxo-principal);
+}
+
+.container-video-embed {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 2px solid var(--texto-claro);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000000;
+    margin-bottom: 10px;
+}
+
+body.modo-hacker .container-video-embed { border-color: var(--roxo-principal); }
+.container-video-embed iframe { width: 100%; height: 100%; display: block; }
+
+.menu-playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 110px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.menu-playlist::-webkit-scrollbar { width: 5px; }
+.menu-playlist::-webkit-scrollbar-thumb { background: var(--texto-claro); border-radius: 10px; }
+body.modo-hacker .menu-playlist::-webkit-scrollbar-thumb { background: var(--roxo-principal); }
+
+.musica-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border: 2px solid var(--texto-claro);
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+body.modo-hacker .musica-wrapper {
+    background-color: transparent;
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+
+.musica-wrapper.ativa { background-color: var(--player-musica-ativa) !important; }
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .folha-caderno { padding: 40px 20px; transform: none !important; clip-path: none !important; }
+    .folha-caderno::after { display: none; }
+    .sistema-espiral { display: none; }
+    #playerGatilho.player-icone-gatilho { bottom: 15px !important; right: 15px !important; width: 55px !important; height: 55px !important; min-width: 55px !important; min-height: 55px !important; }
+    .janela-player { bottom: 85px; right: 15px; width: 260px; }
+}
