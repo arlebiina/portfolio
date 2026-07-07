@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PALETA ESTILO TOKKING / Y2K KAWAII (Padrão)
+   VARIÁVEIS DE SISTEMA (PALETAS DE CORES E FONTES)
    ========================================================================== */
 :root {
     --bg-principal: #CBEBFA;       
@@ -18,14 +18,13 @@
     --player-bg: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
     --player-titulo-bg: linear-gradient(180deg, #CBEBFA 0%, #FFFFFF 100%);
     --player-musica-ativa: #FFF5C3;
-    --furo-cd-bg: #CBEBFA;
 
     --argola-gradiente: linear-gradient(90deg, #2b2b2b 0%, #737373 12%, #f5f5f5 35%, #ffffff 45%, #9c9c9c 70%, #444444 88%, #1c1c1c 100%);
     --argola-sombra: drop-shadow(3px 5px 6px rgba(40, 45, 55, 0.25)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
 }
 
 /* ==========================================================================
-   TRANSFORMAÇÃO MODO HACKER
+   ESTRUTURA COMPORTAMENTAL: MODO HACKER
    ========================================================================== */
 body.modo-hacker {
     --bg-principal: #020202;
@@ -40,21 +39,19 @@ body.modo-hacker {
     --player-bg: #050d05;
     --player-titulo-bg: transparent;
     --player-musica-ativa: rgba(0, 255, 65, 0.2);
-    --furo-cd-bg: #020202;
 
     --argola-gradiente: linear-gradient(90deg, #002200 0%, #008f11 15%, #00ff41 40%, #ffffff 50%, #00ff41 65%, #005500 85%, #001100 100%);
     --argola-sombra: drop-shadow(0px 0px 12px rgba(0, 255, 65, 0.85));
 }
 
 /* ==========================================================================
-   ESTILOS GERAIS DE RESET
+   RESETS E CONFIGURAÇÕES GERAIS DO DOCUMENTO
    ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='18' font-size='16'>🐰</text></svg>"), auto;
 }
 
 body {
@@ -121,7 +118,6 @@ body.modo-hacker .navbar {
     color: var(--texto-mutado);
     font-size: 1rem;
     font-weight: bold;
-    text-transform: lowercase;
     transition: color 0.2s ease;
 }
 
@@ -178,7 +174,7 @@ body.modo-hacker .git-link {
 }
 
 /* ==========================================================================
-   SEÇÃO HERO / BIOGRAFIA
+   SEÇÃO HERO / SEÇÃO BIOGRAFIA
    ========================================================================== */
 .hero-section {
     max-width: 850px;
@@ -277,13 +273,13 @@ body.modo-hacker .btn-secondary {
 .sistema-espiral {
     display: flex;
     justify-content: center;
-    gap: 65px;
+    gap: 45px;
     position: absolute;
     top: -22px; 
     left: 0;
     width: 100%;
     z-index: 10;
-    padding: 0 60px;
+    padding: 0 40px;
 }
 
 .conjunto-argola {
@@ -389,7 +385,7 @@ body.modo-hacker .folha-caderno { clip-path: none !important; }
 body.modo-hacker .bloco-pagina:hover .folha-caderno::after { width: 0px !important; height: 0px !important; }
 
 /* ==========================================================================
-   SEÇÕES INTERNAS, TITULOS E TAGS
+   ELEMENTOS DE CONTEÚDO DA PÁGINA (FILTROS E PROJETOS)
    ========================================================================== */
 .section-title {
     font-size: 1.5rem;
@@ -401,128 +397,79 @@ body.modo-hacker .bloco-pagina:hover .folha-caderno::after { width: 0px !importa
     display: inline-block;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.project-card h3 {
-    font-size: 1.3rem;
-    color: var(--texto-claro);
-    margin-bottom: 8px;
-}
-
-.project-card p {
-    font-size: 1rem;
-    color: var(--texto-mutado);
-    font-weight: bold;
-}
-
-.project-card:hover {
-    background-color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0px var(--texto-claro);
-}
-
-body.modo-hacker .project-card { 
-    border-color: var(--roxo-principal); 
-    background-color: transparent; 
-    box-shadow: none !important;
-}
-
-.tech-tags { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 6px; 
-    margin-top: 15px; 
-}
-
-.tag { 
-    background: linear-gradient(180deg, #FFAEE3 0%, #FFFFFF 100%);
-    color: #1A1D1A; 
-    padding: 4px 10px; 
-    border-radius: 6px; 
-    border: 1px solid var(--texto-claro);
-    font-size: 0.85rem; 
-    font-weight: bold;
-    display: inline-block;
-    animation: flutuaTag 3s ease-in-out infinite;
-}
-
-body.modo-hacker .tag { 
-    background: rgba(0, 255, 65, 0.1) !important; 
-    border-color: var(--roxo-principal);
-    color: var(--roxo-principal);
-}
-
-@keyframes flutuaTag {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
-}
-
-/* ==========================================================================
-   SISTEMA DE FILTRO DINÂMICO DE PROJETOS
-   ========================================================================== */
 .filtro-container {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
 .btn-filtro {
-    background: transparent;
-    border: 2px solid var(--texto-claro);
-    color: var(--texto-claro);
-    padding: 6px 12px;
-    border-radius: 8px;
+    background: none;
+    border: none;
+    color: var(--texto-mutado);
     font-family: inherit;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
+    padding: 4px 8px;
+    transition: color 0.2s;
 }
 
-.btn-filtro:hover, .btn-filtro.ativo {
-    background-color: var(--roxo-principal);
-    color: #ffffff;
-    box-shadow: 2px 2px 0px var(--texto-claro);
-    transform: translate(-1px, -1px);
+.btn-filtro.ativo, .btn-filtro:hover {
+    color: var(--roxo-principal);
 }
 
-body.modo-hacker .btn-filtro {
-    border-color: var(--roxo-principal);
-    color: var(--roxo-principal);
-}
-body.modo-hacker .btn-filtro.ativo, body.modo-hacker .btn-filtro:hover {
-    background-color: rgba(0, 255, 65, 0.2);
-    color: var(--roxo-principal);
-    box-shadow: none;
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .project-card {
-    background-color: rgba(255, 255, 255, 0.65);
-    border: 2px dashed var(--texto-claro);
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--texto-claro);
     border-radius: 8px;
-    padding: 22px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
+    gap: 15px;
+    box-shadow: 3px 3px 0px var(--texto-claro);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.project-card.escondido {
-    opacity: 0 !important;
-    transform: scale(0.8) !important;
-    position: absolute !important;
-    width: 0 !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
+.project-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--texto-claro);
+    background: #ffffff;
+}
+
+body.modo-hacker .project-card {
+    background: transparent;
+    border-color: var(--roxo-principal);
+    box-shadow: none;
+}
+body.modo-hacker .project-card:hover {
+    background: rgba(0, 255, 65, 0.05);
+}
+
+.project-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+.project-card p { font-size: 0.95rem; color: var(--texto-mutado); }
+
+.tech-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag {
+    background: #ffffff;
+    border: 1px solid var(--texto-claro);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+body.modo-hacker .tag {
+    background: transparent;
+    border-color: var(--roxo-principal);
 }
 
 /* ==========================================================================
@@ -553,38 +500,11 @@ body.modo-hacker .status-row {
     color: var(--texto-claro);
 }
 
-.status-bar {
-    display: flex;
-    gap: 4px;
-}
+.status-bar { display: flex; gap: 4px; }
+.coracao-pixel { font-size: 1.3rem; display: inline-block; user-select: none; }
+.coracao-pixel.vazio { opacity: 0.3; }
 
-.coracao-pixel {
-    font-size: 1.3rem;
-    display: inline-block;
-    user-select: none;
-    animation: pulsaCoracao 2s infinite ease-in-out;
-}
-
-.coracao-pixel.vazio {
-    opacity: 0.4;
-    animation: none;
-}
-
-body.modo-hacker .coracao-pixel {
-    text-shadow: 0 0 5px var(--roxo-principal);
-}
-
-@keyframes pulsaCoracao {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-}
-
-.inventario-title {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    color: var(--texto-claro);
-}
-
+.inventario-title { font-size: 1.3rem; margin-bottom: 15px; color: var(--texto-claro); }
 .inventario-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -616,20 +536,9 @@ body.modo-hacker .slot-inventario {
     border-color: var(--roxo-principal);
     box-shadow: none;
 }
-body.modo-hacker .slot-inventario:hover {
-    background-color: rgba(0, 255, 65, 0.1);
-}
 
-.item-icon {
-    font-size: 1.6rem;
-    margin-bottom: 4px;
-}
-
-.item-name {
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-align: center;
-}
+.item-icon { font-size: 1.6rem; margin-bottom: 4px; }
+.item-name { font-size: 0.8rem; font-weight: bold; text-align: center; }
 
 /* ==========================================================================
    ÁREA DE CONTATO E FORMULÁRIOS
@@ -646,7 +555,6 @@ body.modo-hacker .slot-inventario:hover {
     border-radius: 8px; 
     font-family: inherit; 
     font-size: 1rem; 
-    font-weight: bold;
     color: var(--texto-claro); 
 }
 textarea.form-control { min-height: 110px; resize: vertical; }
@@ -678,65 +586,63 @@ body.modo-hacker .btn-submit {
     box-shadow: none;
 }
 
-/* RODAPÉ E TRILHA */
-.contador-cliques { 
-    text-align: center; 
-    padding: 40px; 
-    font-size: 1rem; 
-    font-weight: bold;
-    color: var(--texto-mutado); 
-}
-#numCliques { font-weight: bold; color: var(--roxo-principal); }
-
-.particula-trilha {
-    position: fixed;
-    pointer-events: none;
-    font-size: 15px;
-    z-index: 10000;
-    user-select: none;
-    animation: quedaParticula 0.8s linear forwards;
-}
-
-@keyframes quedaParticula {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(var(--mdx), 35px) scale(0.4); opacity: 0; }
-}
+/* RODAPÉ */
+.contador-cliques { text-align: center; padding: 40px; font-size: 1rem; font-weight: bold; color: var(--texto-mutado); }
 
 /* ==========================================================================
-   RESET FORÇADO DEFINITIVO PARA O CD GIRATÓRIO (Evita bugs com imagens gigantes)
+   CD EM CORES SÓLIDAS GERADO VIA CSS (Cinza, Rosa, Verde, Azul, Branco)
    ========================================================================== */
-/* ==========================================================================
-   CORREÇÃO DEFINITIVA DO CD (MOBILE & DESKTOP)
-   ========================================================================== */
-
-/* 1. Força o botão a virar uma bolinha fixa na tela */
-div/* Procure por essa regra no final do seu style.css e substitua por esta: */
-#playerGatilho.player-icone-gatilho img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    min-width: 100% !important;
-    min-height: 100% !important;
-    
-    /* MUDANÇA AQUI: Faz a arte pixel art inteira encolher para aparecer na bolinha */
-    object-fit: contain !important; 
-    background-color: #79c3e4 !important; /* Um azul combinando com a imagem de fundo */
-    
+.player-icone-gatilho#playerGatilho {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 70px !important;
+    height: 70px !important;
+    min-width: 70px !important;
+    min-height: 70px !important;
     border-radius: 50% !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none !important;
-    animation: girarCD 12s linear infinite !important;
+    border: 3px solid #1A1D1A !important;
+    box-shadow: 4px 4px 0px #1A1D1A !important;
+    z-index: 999999 !important;
+    cursor: pointer !important;
+    
+    /* Faixas de cores sólidas puras, mudando bruscamente sem misturar */
+    background: radial-gradient(
+        circle,
+        #1A1D1A 0% 15%,         /* Centro/furo escuro */
+        #ffffff 15% 24%,        /* Anel Branco */
+        #4A90E2 24% 45%,        /* Faixa Azul */
+        #7ED321 45% 64%,        /* Faixa Verde */
+        #E05EA3 64% 83%,        /* Faixa Rosa */
+        #9B9B9B 83% 100%        /* Faixa Cinza externa */
+    ) !important;
+    
+    animation: rodarCDSolido 7s linear infinite !important;
+    transition: transform 0.2s ease !important;
+}
+
+@keyframes rodarCDSolido {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.player-icone-gatilho#playerGatilho:hover {
+    transform: scale(1.08) !important;
+}
+
+/* CD no Modo Hacker */
+body.modo-hacker .player-icone-gatilho#playerGatilho {
+    background: radial-gradient(circle, #020202 0% 25%, #00ff41 25% 100%) !important;
+    border-color: #00ff41 !important;
+    box-shadow: 0px 0px 12px #00ff41 !important;
 }
 
 /* ==========================================================================
-   JANELA DO PLAYER DE VÍDEO (ESTILO PIP)
+   JANELA DO EMBED PLAYER DE VÍDEO (POP-UP)
    ========================================================================== */
 .janela-player {
     position: fixed;
-    bottom: 95px; 
+    bottom: 100px; 
     right: 20px;
     background: var(--player-bg);
     border: 2px solid var(--texto-claro);
@@ -745,13 +651,13 @@ div/* Procure por essa regra no final do seu style.css e substitua por esta: */
     padding: 14px;
     box-shadow: 6px 6px 0px var(--texto-claro);
     z-index: 9999;
-    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-origin: bottom right;
 }
 
 .janela-player.esconde-player {
     opacity: 0 !important;
-    transform: scale(0) translate(30px, 30px) !important;
+    transform: scale(0) !important;
     pointer-events: none !important;
 }
 
@@ -774,9 +680,6 @@ body.modo-hacker .janela-player {
     padding: 4px 12px;
     font-size: 0.9rem;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 6px;
     color: var(--texto-claro);
 }
 
@@ -788,15 +691,16 @@ body.modo-hacker .titulo-phoning { border-color: var(--roxo-principal); }
     border: 1px solid var(--texto-claro);
     background-color: #FFFFFF;
     border-radius: 4px;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: bold;
     color: #000000;
     cursor: pointer;
+    user-select: none;
 }
 
 body.modo-hacker .botao-controle {
@@ -824,42 +728,16 @@ body.modo-hacker .container-video-embed { border-color: var(--roxo-principal); }
     gap: 6px;
     max-height: 110px;
     overflow-y: auto;
-    padding-right: 4px;
 }
-
-.menu-playlist::-webkit-scrollbar { width: 5px; }
-.menu-playlist::-webkit-scrollbar-thumb { background: var(--texto-claro); border-radius: 10px; }
-body.modo-hacker .menu-playlist::-webkit-scrollbar-thumb { background: var(--roxo-principal); }
-
-.musica-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    border: 2px solid var(--texto-claro);
-    border-radius: 6px;
-    padding: 6px 10px;
-    cursor: pointer;
-    box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-    transition: transform 0.1s ease, background-color 0.2s ease;
-}
-
-body.modo-hacker .musica-wrapper {
-    background-color: transparent;
-    border-color: var(--roxo-principal);
-    box-shadow: none;
-}
-
-.musica-wrapper.ativa { background-color: var(--player-musica-ativa) !important; }
 
 /* ==========================================================================
-   RESPONSIVIDADE (MOBILE)
+   RESPONSIVIDADE GERAL (MOBILE)
    ========================================================================== */
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .folha-caderno { padding: 40px 20px; transform: none !important; clip-path: none !important; }
     .folha-caderno::after { display: none; }
     .sistema-espiral { display: none; }
-    #playerGatilho.player-icone-gatilho { bottom: 15px !important; right: 15px !important; width: 55px !important; height: 55px !important; min-width: 55px !important; min-height: 55px !important; }
-    .janela-player { bottom: 85px; right: 15px; width: 260px; }
+    .player-icone-gatilho#playerGatilho { bottom: 15px !important; right: 15px !important; width: 60px !important; height: 60px !important; min-width: 60px !important; min-height: 60px !important; }
+    .janela-player { bottom: 90px; right: 15px; width: 260px; }
 }
