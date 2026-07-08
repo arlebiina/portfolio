@@ -1,30 +1,36 @@
 <?php
+
 class PortfolioController {
+    
     public function index() {
-        // Busca os dados das listas de projetos no Model
-        $projetosDestaque = Projeto::getProjetosDestaque();
-        $projetosAutorais = Projeto::getProjetosAutorais();
-       
-        // Renderiza a visualização principal passando as variáveis
+        // Instancia o modelo Projeto
+        $projetoModel = new Projeto();
+        
+        $projetosDestaque = $projetoModel->getProjetosDestaque();
+        $projetosAutorais = $projetoModel->getProjetosAutorais();
+        
+        // CORREÇÃO: Sobe um nível e busca a home.php dentro da pasta views
         require_once __DIR__ . '/../views/home.php';
     }
-
+    
     public function enviarContato() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nome = htmlspecialchars($_POST['nome']);
-            $email = htmlspecialchars($_POST['email']);
-            $mensagem = htmlspecialchars($_POST['mensagem']);
-           
-            // Mensagem estruturada para o WhatsApp
-            $textoWhats = urlencode("Olá! Meu nome é $nome ($email). Vim através do seu Portfólio MVC. Mensagem: $mensagem");
-           
-            // SUBSTITUA ABAIXO PELO SEU NÚMERO REAL DO WHATSAPP (Com código do país e DDD)
-            $numeroWhats = "5534999861586";
-           
-            // Redireciona para o WhatsApp cumprindo o requisito de integração real
-            header("Location: https://api.whatsapp.com/send?phone=$numeroWhats&text=$textoWhats");
-            exit;
+            $nome = isset($_POST['nome']) ? trim($_POST['nome']) : '';
+            $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+            $mensagem = isset($_POST['mensagem']) ? trim($_POST['mensagem']) : '';
+            
+            if (!empty($nome) && !empty($mensagem)) {
+                $textoWhastapp = "Olá! Meu nome é " . $nome . " (" . $email . "). " . $mensagem;
+                $urlUrlencode = urlencode($textoWhastapp);
+                
+                // Redireciona para o WhatsApp
+                header("Location: https://api.whatsapp.com/send?phone=5534999999999&text=" . $urlUrlencode);
+                exit;
+            }
         }
+        
+        header("Location: index.php");
+        exit;
     }
 }
 ?>
