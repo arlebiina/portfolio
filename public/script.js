@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 2. CONTADOR DE CLIQUES SEGRETO
+    // 2. CONTADOR DE CLIQUES
     let totalCliques = 0;
     const campoContador = document.getElementById('numCliques');
    
@@ -127,12 +127,22 @@ function renderizarPlaylist() {
     musicasBase.forEach(musica => {
         const classeAtiva = musica.id === musicaAtivaId ? "ativa" : "";
 
+        // MODIFICAÇÃO: Removido o onclick em texto para usar data attributes seguros
         const itemHTML = `
-            <div class="musica-wrapper ${classeAtiva}" onclick="tocarMusica('${musica.url}', '${musica.id}')">
+            <div class="musica-wrapper ${classeAtiva}" data-id="${musica.id}" data-url="${musica.url}">
                 <span class="musica-item">🎵 NewJeans - ${musica.titulo}</span>
             </div>
         `;
         listaPlaylistGeral.insertAdjacentHTML('beforeend', itemHTML);
+    });
+
+    // MODIFICAÇÃO: Atribuição dos cliques diretamente através dos elementos criados
+    document.querySelectorAll('.musica-wrapper').forEach(item => {
+        item.addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            const id = this.getAttribute('data-id');
+            tocarMusica(url, id);
+        });
     });
 }
 
