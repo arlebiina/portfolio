@@ -1,3 +1,4 @@
+
 /* ==========================================
    1. VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS
    ========================================== */
@@ -6,20 +7,10 @@
     --text-color: #5c3a21;     /* Marrom escuro para as fontes principais */
     --bloco-bg: #FAEEE6;       /* Caixas principais em tom FAEEE6 */
     --borda-color: #000000;    /* Borda preta sólida para o estilo pixel/retrô */
-    --rosa-botao: #F7BCC6;     /* Botões e tags em rosa F7BCC6 */
-    --rosa-hover: #f3a4b2;     /* Rosa ajustado para o efeito de hover */
+    --rosa-botao: #F7BCC6;     /* Cor da faixa rosa de fundo e dos botões */
+    --rosa-hover: #f3a4b2;     /* Efeito de passar o mouse no botão */
     --listra-marrom: #D9C1AF;  /* Marrom das listras em D9C1AF */
-    --listra-bege: #FFE4CF;   /* Bege das listras em FFE4CF */
-}
-
-/* Modo Hacker */
-body.modo-hacker {
-    --bg-color: #0a0f0d;
-    --text-color: #39ff14;
-    --bloco-bg: #141a17;
-    --borda-color: #39ff14;
-    --rosa-botao: #141a17;
-    --rosa-hover: #39ff14;
+    --listra-bege: #FFE4CF;    /* Bege das listras em FFE4CF */
 }
 
 * {
@@ -32,11 +23,17 @@ body.modo-hacker {
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
+    /* Cursor de coelhinho customizado */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>🐰</text></svg>"), auto;
 }
 
-/* Faixa Quadriculada Decorativa */
+/* Mantém o cursor de coelho em links, botões e filtros */
+a, button, .btn-filtro {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>🐰</text></svg>"), pointer !important;
+}
+
+/* Faixa Quadriculada Decorativa no Extremo Topo */
 .faixa-quadriculada {
     height: 15px;
     background-image: linear-gradient(45deg, var(--listra-marrom) 25%, transparent 25%), 
@@ -46,64 +43,49 @@ body {
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
     background-color: var(--listra-bege);
+    width: 100%;
 }
 
 /* ==========================================
-   2. BARRA DE NAVEGAÇÃO (NAVBAR)
+   2. BARRA DE NAVEGAÇÃO ALINHADA (SPLIT)
    ========================================== */
 .navbar {
-    background-color: var(--rosa-botao); 
+    background-color: var(--rosa-botao) !important;
     border-bottom: 3px solid var(--borda-color);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    padding: 12px 0;
+    width: 100%;
 }
 
-.nav-container {
+.nav-container-split {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 20px;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: inline-block;
-    color: var(--text-color) !important; 
-}
-
-.nav-links {
     display: flex;
-    list-style: none;
+    justify-content: space-between; /* Título na esquerda ◄---------► Links na direita */
     align-items: center;
-    gap: 20px;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color); 
+.nav-botoes-direita {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-titulo-retro {
+    font-size: 1.1rem;
     font-weight: bold;
-    padding: 5px 10px;
-    border: 1px solid transparent;
-    transition: all 0.2s;
-}
-
-.nav-links a:hover {
-    background-color: var(--text-color);
-    color: var(--bloco-bg);
-}
-
-.btn-toggle-modo {
-    background-color: var(--bloco-bg);
     color: var(--text-color);
-    border: 2px solid var(--borda-color);
-    padding: 5px 10px;
-    cursor: pointer;
+}
+
+.nav-link-clean {
+    text-decoration: none;
+    color: var(--text-color);
     font-weight: bold;
+    font-size: 1.05rem;
+    transition: color 0.2s;
+}
+
+.nav-link-clean:hover {
+    color: #ff007f;
 }
 
 /* ==========================================
@@ -124,7 +106,7 @@ body {
     }
 }
 
-/* Boxes Principais (FAEEE6) - ATUALIZADO: Tudo dentro delas em Arial + Bold */
+/* Boxes Principais (FAEEE6) - Textos em Arial e Negrito */
 .bloco-conteudo, .bloco-lateral-conteudo {
     font-family: 'Arial', sans-serif !important;
     font-weight: bold !important;
@@ -137,7 +119,6 @@ body {
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-/* Garantir que títulos dentro das caixas também usem Arial e Bold */
 .bloco-conteudo h2, .bloco-conteudo h3, 
 .bloco-lateral-conteudo h2, .bloco-lateral-conteudo h3,
 .section-title, .sidebar-title {
@@ -146,7 +127,7 @@ body {
 }
 
 /* ==========================================
-   4. SEÇÃO BIOGRAFIA (HERO)
+   4. SEÇÃO BIOGRAFIA (HERO) E FOTO DE PERFIL
    ========================================== */
 .perfil-topo {
     display: flex;
@@ -162,18 +143,72 @@ body {
     border-radius: 25px;
     border: 2px solid var(--borda-color);
     object-fit: cover;
+    position: relative;
+    
+    /* Aplica a animação das bolinhas ao redor da borda */
+    animation: bolinhasAoRedor 4s linear infinite;
+}
+
+/* ANIMAÇÃO DAS BOLINHAS ANDANDO NA BORDA */
+@keyframes bolinhasAoRedor {
+    0% {
+        box-shadow: 
+            /* Topo Esquerda */
+            -15px -15px 0 -11px #F7BCC6,
+            /* Topo Direita */
+            15px -15px 0 -11px #ffffff,
+            /* Baixo Direita */
+            15px 15px 0 -11px #F7BCC6,
+            /* Baixo Esquerda */
+            -15px 15px 0 -11px #ffffff;
+    }
+    25% {
+        box-shadow: 
+            /* Deslocando os pontos em sentido horário */
+            15px -15px 0 -11px #F7BCC6,
+            15px 15px 0 -11px #ffffff,
+            -15px 15px 0 -11px #F7BCC6,
+            -15px -15px 0 -11px #ffffff;
+    }
+    50% {
+        box-shadow: 
+            15px 15px 0 -11px #F7BCC6,
+            -15px 15px 0 -11px #ffffff,
+            -15px -15px 0 -11px #F7BCC6,
+            15px -15px 0 -11px #ffffff;
+    }
+    75% {
+        box-shadow: 
+            -15px 15px 0 -11px #F7BCC6,
+            -15px -15px 0 -11px #ffffff,
+            15px -15px 0 -11px #F7BCC6,
+            15px 15px 0 -11px #ffffff;
+    }
+    100% {
+        box-shadow: 
+            -15px -15px 0 -11px #F7BCC6,
+            15px -15px 0 -11px #ffffff,
+            15px 15px 0 -11px #F7BCC6,
+            -15px 15px 0 -11px #ffffff;
+    }
 }
 
 .titulos-perfil {
     text-align: center;
 }
 
-/* Efeito Arco-Íris Animado no h1 */
 .titulos-perfil h1 {
     font-size: 1.8rem;
     margin-bottom: 5px;
     display: inline-block;
-    background: linear-gradient(to right, #ff007f, #ff00ff, #00ffff, #ff007f);
+    /* Substituído o arco-íris neon pela paleta: Rosa -> Marrom -> Creme -> Rosa */
+    background: linear-gradient(
+        to right, 
+        var(--rosa-botao), 
+        var(--text-color), 
+        var(--bloco-bg), 
+        var(--rosa-botao)
+    );
     background-size: 400% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -191,7 +226,6 @@ body {
     color: var(--text-color) !important;
 }
 
-/* Biografia em Arial e Bold */
 .bio-text {
     font-family: 'Arial', sans-serif !important;
     font-weight: bold !important;
@@ -220,7 +254,7 @@ body {
 }
 
 /* ==========================================
-   5. SEÇÃO DE PROJETOS & FILTROS
+   5. SEÇÃO DE PROJETOS E FILTROS
    ========================================== */
 .section-title, .sidebar-title {
     font-size: 1.6rem;
@@ -252,7 +286,6 @@ body {
     color: var(--rosa-botao);
 }
 
-/* Grelha de Cards */
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -293,7 +326,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Descrição dos Projetos em Arial e Bold */
 .project-card p {
     font-family: 'Arial', sans-serif !important;
     font-weight: bold !important;
@@ -303,7 +335,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Etiquetas de Tecnologia */
 .tech-tags {
     display: flex;
     gap: 6px;
@@ -328,7 +359,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Labels do formulário seguem a regra Arial + Bold */
 .form-group label {
     font-family: 'Arial', sans-serif !important;
     font-weight: bold !important;
@@ -370,7 +400,6 @@ textarea.form-control {
     background-color: var(--rosa-hover);
 }
 
-/* Pílulas Laterais de Skills */
 .skills-pills {
     display: flex;
     flex-wrap: wrap;
@@ -388,11 +417,12 @@ textarea.form-control {
 }
 
 /* ==========================================
-   7. RODAPÉ E EXTRA
+   7. RODAPÉ FIXO COM CONTADOR
    ========================================== */
 .contador-cliques {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: var(--rosa-botao);
     border-top: 2px solid var(--borda-color);
@@ -402,70 +432,4 @@ textarea.form-control {
     font-size: 0.9rem;
     color: var(--text-color);
     z-index: 999;
-}
-
-.player-icone-gatilho {
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    background-color: var(--rosa-botao);
-    border: 2px solid var(--borda-color);
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 2000;
-}
-
-.janela-player {
-    position: fixed;
-    bottom: 110px;
-    right: 20px;
-    width: 320px;
-    background-color: var(--bloco-bg);
-    border: 2px solid var(--borda-color);
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-}
-
-.janela-player.esconde-player {
-    display: none !important;
-}
-
-.barra-superior {
-    background-color: var(--text-color);
-    color: var(--bloco-bg);
-    padding: 6px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-}
-
-.container-video-embed {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-}
-
-.container-video-embed iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.menu-playlist {
-    background-color: var(--bloco-bg);
-    max-height: 120px;
-    overflow-y: auto;
-}
-
-.item-track {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-    color: var(--text-color);
-    cursor: pointer;
 }
