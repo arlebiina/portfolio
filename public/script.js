@@ -1,42 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. ALTERNAR MODO HACKER
-    const btnToggleModo = document.getElementById('btnToggleModo');
-    if (btnToggleModo) {
-        btnToggleModo.addEventListener('click', () => {
-            document.body.classList.toggle('modo-hacker');
-            if (document.body.classList.contains('modo-hacker')) {
-                btnToggleModo.textContent = '🤖 Modo Normal';
-            } else {
-                btnToggleModo.textContent = '🤖 Modo Hacker';
-            }
-        });
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    // 1. CONTADOR DE CLIQUES
+    let totalCliques = 0;
+    const elementoContador = document.getElementById("contador-rodape");
 
-    // 2. CONTADOR DE CLIQUES NO RODAPÉ
-    const numCliques = document.getElementById('numCliques');
-    let cliques = 0;
-    document.addEventListener('click', (e) => {
-        // Não conta se clicar em botões ou links para não atrapalhar
-        if (!e.target.closest('button') && !e.target.closest('a')) {
-            cliques++;
-            if (numCliques) numCliques.textContent = cliques;
+    document.body.addEventListener("click", function () {
+        totalCliques++;
+        if (elementoContador) {
+            elementoContador.textContent = `Interação com o portfólio: ${totalCliques} 🌟`;
         }
     });
 
-    // 3. JANELA DO PLAYER DE MÚSICA
-    const playerGatilho = document.getElementById('playerGatilho');
-    const janelaMvPlayer = document.getElementById('janelaMvPlayer');
-    const btnFecharPlayer = document.getElementById('btnFecharPlayer');
+    // 2. FILTROS DA GRID DE PROJETOS
+    const botoesFiltro = document.querySelectorAll(".btn-filtro");
+    const cardsProjetos = document.querySelectorAll(".project-card-link");
 
-    if (playerGatilho && janelaMvPlayer) {
-        playerGatilho.addEventListener('click', () => {
-            janelaMvPlayer.classList.remove('esconde-player');
-        });
-    }
+    botoesFiltro.forEach(botao => {
+        botao.addEventListener("click", function (e) {
+            e.stopPropagation();
+            
+            botoesFiltro.forEach(b => b.classList.remove("ativo"));
+            this.classList.add("ativo");
 
-    if (btnFecharPlayer && janelaMvPlayer) {
-        btnFecharPlayer.addEventListener('click', () => {
-            janelaMvPlayer.classList.add('esconde-player');
+            const filtroDefinido = this.getAttribute("data-filter");
+
+            cardsProjetos.forEach(card => {
+                const techCard = card.getAttribute("data-tech");
+                if (filtroDefinido === "all" || techCard === filtroDefinido) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
         });
-    }
+    });
 });
