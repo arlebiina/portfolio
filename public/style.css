@@ -1,100 +1,67 @@
-/* ==========================================================================
-   VARIÁVEIS DE SISTEMA (PALETAS DE CORES E FONTES)
-   ========================================================================== */
+/* ==========================================
+   1. VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS
+   ========================================== */
 :root {
-    --bg-principal: #CBEBFA;       
-    --bg-card: #fdfcf7;           
-    --roxo-principal: #E05EA3;    
-    --roxo-hover: #C23B83;        
-    --texto-claro: #1A1D1A;       
-    --texto-mutado: #2A363B;      
-    --borda-suave: rgba(0, 0, 0, 0.08);
-    
-    font-family: 'DotGothic16', sans-serif;
-
-    --janela-verde: linear-gradient(0deg, #FFFFFF 0%, #D3FFB0 100%);
-    --janela-rosa: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
-
-    --player-bg: linear-gradient(0deg, #FFFFFF 0%, #FFAEE3 100%);
-    --player-titulo-bg: linear-gradient(180deg, #CBEBFA 0%, #FFFFFF 100%);
-    --player-musica-ativa: #FFF5C3;
-
-    --argola-gradiente: linear-gradient(90deg, #2b2b2b 0%, #737373 12%, #f5f5f5 35%, #ffffff 45%, #9c9c9c 70%, #444444 88%, #1c1c1c 100%);
-    --argola-sombra: drop-shadow(3px 5px 6px rgba(40, 45, 55, 0.25)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
+    --bg-color: #cceeff;       /* Azul claro de fundo da tela */
+    --text-color: #5c3a21;     /* Marrom escuro para as fontes principais */
+    --bloco-bg: #FAEEE6;       /* Caixas principais em tom FAEEE6 */
+    --borda-color: #000000;    /* Borda preta sólida para o estilo pixel/retrô */
+    --rosa-botao: #F7BCC6;     /* Botões e tags em rosa F7BCC6 */
+    --rosa-hover: #f3a4b2;     /* Rosa ajustado para o efeito de hover */
+    --listra-marrom: #D9C1AF;  /* Marrom das listras em D9C1AF */
+    --listra-bege: #FFE4CF;   /* Bege das listras em FFE4CF */
 }
 
-/* ==========================================================================
-   ESTRUTURA COMPORTAMENTAL: MODO HACKER
-   ========================================================================== */
+/* Modo Hacker */
 body.modo-hacker {
-    --bg-principal: #020202;
-    --bg-card: #050d05;
-    --roxo-principal: #00ff41;    
-    --roxo-hover: #00ff41;
-    --texto-claro: #00ff41;
-    --texto-mutado: #00ff41;       
-    --borda-suave: #004400;
-    font-family: 'Courier New', Courier, monospace !important;
-
-    --player-bg: #050d05;
-    --player-titulo-bg: transparent;
-    --player-musica-ativa: rgba(0, 255, 65, 0.2);
-
-    --argola-gradiente: linear-gradient(90deg, #002200 0%, #008f11 15%, #00ff41 40%, #ffffff 50%, #00ff41 65%, #005500 85%, #001100 100%);
-    --argola-sombra: drop-shadow(0px 0px 12px rgba(0, 255, 65, 0.85));
+    --bg-color: #0a0f0d;
+    --text-color: #39ff14;
+    --bloco-bg: #141a17;
+    --borda-color: #39ff14;
+    --rosa-botao: #141a17;
+    --rosa-hover: #39ff14;
 }
 
-/* ==========================================================================
-   RESETS E CONFIGURAÇÕES GERAIS DO DOCUMENTO
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
-    font-weight: bold !important;
-    letter-spacing: 0.8px;
+    font-family: 'DotGothic16', 'Courier New', Courier, monospace;
 }
 
 body {
-    background-color: var(--bg-principal);
-    background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 0);
-    background-size: 16px 16px;
-    color: var(--texto-claro);
-    line-height: 1.7; 
-    font-size: 14px;  
-    overflow-x: hidden;
-    position: relative;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    padding-bottom: 60px;
 }
 
-body.modo-hacker {
-    background-image: radial-gradient(rgba(0,255,65,0.04) 1px, transparent 0);
+/* Faixa Quadriculada Decorativa */
+.faixa-quadriculada {
+    height: 15px;
+    background-image: linear-gradient(45deg, var(--listra-marrom) 25%, transparent 25%), 
+                      linear-gradient(-45deg, var(--listra-marrom) 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, var(--listra-marrom) 75%), 
+                      linear-gradient(-45deg, transparent 75%, var(--listra-marrom) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-color: var(--listra-bege);
 }
 
-/* ==========================================================================
-   BARRA DE NAVEGAÇÃO (NAVBAR)
-   ========================================================================== */
+/* ==========================================
+   2. BARRA DE NAVEGAÇÃO (NAVBAR)
+   ========================================== */
 .navbar {
-    position: fixed;
+    background-color: var(--rosa-botao); 
+    border-bottom: 3px solid var(--borda-color);
+    padding: 15px 0;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
     z-index: 1000;
-    background-color: rgba(203, 235, 250, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 3px dashed var(--roxo-principal);
-    padding: 20px 0;
-    transition: all 0.3s ease;
-}
-
-body.modo-hacker .navbar {
-    background-color: rgba(2, 2, 2, 0.9);
-    border-bottom: 2px dashed var(--roxo-principal);
 }
 
 .nav-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -103,8 +70,10 @@ body.modo-hacker .navbar {
 }
 
 .logo {
-    font-size: 1.6rem;
-    color: var(--texto-claro);
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: inline-block;
+    color: var(--text-color) !important; 
 }
 
 .nav-links {
@@ -116,614 +85,387 @@ body.modo-hacker .navbar {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--texto-mutado);
-    font-size: 1rem;
-    transition: color 0.2s ease;
+    color: var(--text-color); 
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
 }
 
-.nav-links a:hover { 
-    color: var(--roxo-principal); 
+.nav-links a:hover {
+    background-color: var(--text-color);
+    color: var(--bloco-bg);
 }
 
 .btn-toggle-modo {
-    background: #ffffff;
-    border: 2px solid var(--texto-claro);
-    color: var(--texto-claro);
-    padding: 6px 14px;
-    border-radius: 8px; 
+    background-color: var(--bloco-bg);
+    color: var(--text-color);
+    border: 2px solid var(--borda-color);
+    padding: 5px 10px;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-family: inherit;
-    transition: all 0.2s ease;
-    box-shadow: 2px 2px 0px var(--texto-claro);
+    font-weight: bold;
 }
 
-.btn-toggle-modo:hover { 
-    background-color: var(--roxo-principal); 
-    color: #ffffff;
-    transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px var(--texto-claro);
+/* ==========================================
+   3. LAYOUT GRID PRINCIPAL E TEXTOS DAS BOXES
+   ========================================== */
+.portfolio-grid-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
 }
 
-body.modo-hacker .btn-toggle-modo { 
-    background: none; 
-    color: var(--roxo-principal); 
-    border-color: var(--roxo-principal);
-    box-shadow: none;
+@media (max-width: 768px) {
+    .portfolio-grid-container {
+        grid-template-columns: 1fr;
+    }
 }
 
-.git-link {
-    background-color: #FFAEE3 !important;
-    color: #1A1D1A !important;
-    padding: 6px 14px !important;
-    border-radius: 8px;
-    border: 2px solid var(--texto-claro);
-    box-shadow: 2px 2px 0px var(--texto-claro);
-}
-.git-link:hover { 
-    background-color: var(--roxo-principal) !important; 
-    color: #ffffff !important;
-}
-
-body.modo-hacker .git-link { 
-    background: none !important; 
-    color: var(--roxo-principal) !important; 
-    border-color: var(--roxo-principal);
-    box-shadow: none;
+/* Boxes Principais (FAEEE6) - ATUALIZADO: Tudo dentro delas em Arial + Bold */
+.bloco-conteudo, .bloco-lateral-conteudo {
+    font-family: 'Arial', sans-serif !important;
+    font-weight: bold !important;
+    background-color: var(--bloco-bg) !important;
+    border: 2px solid var(--borda-color) !important;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    color: var(--text-color) !important;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-/* ==========================================================================
-   SEÇÃO HERO / SEÇÃO BIOGRAFIA
-   ========================================================================== */
-.hero-section {
-    max-width: 850px;
-    margin: 0 auto;
-    padding: 160px 20px 60px 20px;
+/* Garantir que títulos dentro das caixas também usem Arial e Bold */
+.bloco-conteudo h2, .bloco-conteudo h3, 
+.bloco-lateral-conteudo h2, .bloco-lateral-conteudo h3,
+.section-title, .sidebar-title {
+    font-family: 'Arial', sans-serif !important;
+    font-weight: bold !important;
+}
+
+/* ==========================================
+   4. SEÇÃO BIOGRAFIA (HERO)
+   ========================================== */
+.perfil-topo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.foto-perfil {
+    width: 120px;
+    height: 120px;
+    border-radius: 25px;
+    border: 2px solid var(--borda-color);
+    object-fit: cover;
+}
+
+.titulos-perfil {
     text-align: center;
 }
 
-.hero-content h1 {
-    font-size: 3.5rem;
-    color: var(--texto-claro);
-    margin-bottom: 12px;
+/* Efeito Arco-Íris Animado no h1 */
+.titulos-perfil h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    display: inline-block;
+    background: linear-gradient(to right, #ff007f, #ff00ff, #00ffff, #ff007f);
+    background-size: 400% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: efeitoArcoIris 4s linear infinite;
+}
+
+@keyframes efeitoArcoIris {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
 .subtitle {
-    font-size: 1.6rem;
-    color: var(--roxo-hover); 
-    letter-spacing: 1.5px;
-    margin-bottom: 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-color) !important;
 }
 
-body.modo-hacker .subtitle {
-    color: var(--roxo-principal);
-}
-
+/* Biografia em Arial e Bold */
 .bio-text {
-    font-size: 1.25rem;
-    color: var(--texto-mutado); 
-    max-width: 760px;
-    margin: 0 auto 35px auto;
+    font-family: 'Arial', sans-serif !important;
+    font-weight: bold !important;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-color) !important;
 }
 
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.btn-primary, .btn-secondary {
+.btn-primary {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
     text-decoration: none;
-    padding: 10px 22px;
+    background-color: var(--rosa-botao);
+    color: var(--text-color);
+    padding: 8px 20px;
+    font-weight: bold;
+    border: 2px solid var(--borda-color);
     border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s;
 }
 
-.btn-primary { 
-    background-color: #FFAEE3; 
-    color: #1A1D1A; 
-    border: 2px solid var(--texto-claro);
-    box-shadow: 3px 3px 0px var(--texto-claro);
-}
-.btn-primary:hover { 
-    background-color: var(--roxo-principal);
-    color: white;
+.btn-primary:hover {
+    background-color: var(--rosa-hover);
 }
 
-.btn-secondary { 
-    border: 2px solid var(--texto-claro); 
-    color: var(--texto-claro); 
-    background: #fff;
-    box-shadow: 3px 3px 0px var(--texto-claro);
-}
-.btn-secondary:hover { 
-    background-color: var(--bg-principal); 
-}
-
-body.modo-hacker .btn-primary,
-body.modo-hacker .btn-secondary {
-    background: none;
-    color: var(--roxo-principal);
-    border-color: var(--roxo-principal);
-    box-shadow: none;
-}
-
-/* ==========================================================================
-   ESTRUTURA DO CADERNO (FOLHAS E ESPIRAIS)
-   ========================================================================== */
-.caderno-container {
-    max-width: 840px;
-    margin: 0 auto 80px auto;
-    padding: 0 20px;
-}
-
-.bloco-pagina {
-    margin-bottom: 80px; 
-    position: relative;
-    perspective: 1000px;
-}
-
-.sistema-espiral {
-    display: flex;
-    justify-content: center;
-    gap: 45px;
-    position: absolute;
-    top: -22px; 
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    padding: 0 40px;
-}
-
-.conjunto-argola {
-    position: relative;
-    width: 16px;
-    height: 45px;
-}
-
-.argola-metalica {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--argola-gradiente);
-    border-radius: 8px;
-    filter: var(--argola-sombra);
-    transform-origin: top center;
-    transition: transform 0.4s ease-out;
-}
-
-.furo-papel {
-    position: absolute;
-    bottom: -6px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 6px;
-    background-color: #1c1714; 
-    border-radius: 50%;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.85);
-    z-index: -1;
-}
-
-body.modo-hacker .furo-papel { background-color: #000000; }
-
-.folha-caderno {
-    background: var(--bg-card);
-    padding: 60px 50px 50px 50px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(45, 55, 65, 0.1);
-    border: 2px solid rgba(0, 0, 0, 0.12);
-    position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-    transition: transform 0.5s ease, box-shadow 0.4s ease, clip-path 0.4s ease;
-}
-
-.bloco-pagina:nth-child(odd) .folha-caderno { background: var(--janela-verde); }
-.bloco-pagina:nth-child(even) .folha-caderno { background: var(--janela-rosa); }
-
-.folha-caderno::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 42px;
-    width: 2px;
-    height: 100%;
-    background-color: rgba(255, 174, 227, 0.6); 
-}
-
-body.modo-hacker .folha-caderno,
-body.modo-hacker .bloco-pagina:nth-child(odd) .folha-caderno,
-body.modo-hacker .bloco-pagina:nth-child(even) .folha-caderno { 
-    background: var(--bg-card) !important; 
-    border-color: var(--borda-suave);
-}
-body.modo-hacker .folha-caderno::before { background-color: rgba(0, 255, 65, 0.2); }
-
-.folha-caderno::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, transparent 50%, rgba(47, 51, 45, 0.12) 55%, var(--bg-principal) 65%);
-    pointer-events: none;
-    z-index: 5;
-}
-
-.bloco-pagina:nth-child(odd) .folha-caderno { transform: rotate(-0.4deg); }
-.bloco-pagina:nth-child(even) .folha-caderno { transform: rotate(0.4deg); }
-
-.bloco-pagina:hover .folha-caderno {
-    transform: translateY(-4px) scale(1.002) rotate(0deg) !important;
-    box-shadow: 0 15px 35px rgba(45, 55, 65, 0.15);
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%);
-}
-
-.bloco-pagina:hover .folha-caderno::after {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, transparent 50%, rgba(60, 50, 40, 0.15) 51%, #ffffff 55%, #fff0fa 80%);
-}
-
-.bloco-pagina:hover .conjunto-argola:nth-child(odd) .argola-metalica { animation: pendulo 1.2s ease-in-out infinite alternate; }
-.bloco-pagina:hover .conjunto-argola:nth-child(even) .argola-metalica { animation: penduloInverso 1.4s ease-in-out infinite alternate; }
-
-@keyframes pendulo { 0% { transform: rotate(-3deg); } 100% { transform: rotate(4deg); } }
-@keyframes penduloInverso { 0% { transform: rotate(3deg); } 100% { transform: rotate(-4deg); } }
-
-body.modo-hacker .folha-caderno { clip-path: none !important; }
-body.modo-hacker .bloco-pagina:hover .folha-caderno::after { width: 0px !important; height: 0px !important; }
-
-/* ==========================================================================
-   ELEMENTOS DE CONTEÚDO DA PÁGINA (FILTROS E PROJETOS)
-   ========================================================================== */
-.section-title {
-    font-size: 1.5rem;
-    color: var(--texto-claro);
-    margin-bottom: 25px;
-    border-bottom: 2px dashed var(--texto-claro);
-    padding-bottom: 6px;
-    display: inline-block;
+/* ==========================================
+   5. SEÇÃO DE PROJETOS & FILTROS
+   ========================================== */
+.section-title, .sidebar-title {
+    font-size: 1.6rem;
+    border-bottom: 2px dashed var(--text-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--text-color) !important;
 }
 
 .filtro-container {
     display: flex;
     gap: 10px;
-    margin-bottom: 25px;
     flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 
 .btn-filtro {
-    background: none;
-    border: none;
-    color: var(--texto-mutado);
-    font-family: inherit;
-    font-size: 1rem;
+    background: var(--rosa-botao);
+    border: 2px solid var(--borda-color);
+    color: var(--text-color);
+    padding: 5px 12px;
     cursor: pointer;
-    padding: 4px 8px;
-    transition: color 0.2s;
+    font-weight: bold;
+    border-radius: 8px;
 }
 
 .btn-filtro.ativo, .btn-filtro:hover {
-    color: var(--roxo-principal);
+    background-color: var(--text-color);
+    color: var(--rosa-botao);
 }
 
+/* Grelha de Cards */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.project-card-link {
+    text-decoration: none !important;
+    display: block;
+    color: inherit !important;
+}
+
 .project-card {
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid var(--texto-claro);
-    border-radius: 8px;
-    padding: 16px;
+    border: 2px solid var(--borda-color);
+    border-radius: 15px;
+    padding: 18px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 15px;
-    box-shadow: 3px 3px 0px var(--texto-claro);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.project-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px var(--texto-claro);
-    background: #ffffff;
-}
-
-body.modo-hacker .project-card {
-    background: transparent;
-    border-color: var(--roxo-principal);
-    box-shadow: none;
-}
-body.modo-hacker .project-card:hover {
-    background: rgba(0, 255, 65, 0.05);
-}
-
-.project-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
-.project-card p { font-size: 0.95rem; color: var(--texto-mutado); }
-
-.tech-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.tag {
-    background: #ffffff;
-    border: 1px solid var(--texto-claro);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-}
-
-body.modo-hacker .tag {
-    background: transparent;
-    border-color: var(--roxo-principal);
-}
-
-/* ==========================================================================
-   STATUS DE RPG (HABILIDADES) E INVENTÁRIO
-   ========================================================================== */
-.rpg-status-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 35px;
-}
-
-.status-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px dashed rgba(0,0,0,0.1);
-    padding-bottom: 8px;
-}
-
-body.modo-hacker .status-row {
-    border-bottom-color: rgba(0, 255, 65, 0.2);
-}
-
-.status-label {
-    font-size: 1.1rem;
-    color: var(--texto-claro);
-}
-
-.status-bar { display: flex; gap: 4px; }
-.coracao-pixel { font-size: 1.3rem; display: inline-block; user-select: none; }
-.coracao-pixel.vazio { opacity: 0.3; }
-
-.inventario-title { font-size: 1.3rem; margin-bottom: 15px; color: var(--texto-claro); }
-.inventario-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 15px;
-}
-
-.slot-inventario {
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 2px solid var(--texto-claro);
-    border-radius: 8px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    transition: all 0.2s ease;
-    box-shadow: 2px 2px 0px var(--texto-claro);
-}
-
-.slot-inventario:hover {
-    background-color: #ffffff;
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px var(--texto-claro);
-}
-
-body.modo-hacker .slot-inventario {
-    background-color: transparent;
-    border-color: var(--roxo-principal);
-    box-shadow: none;
-}
-
-.item-icon { font-size: 1.6rem; margin-bottom: 4px; }
-.item-name { font-size: 0.8rem; text-align: center; }
-
-/* ==========================================================================
-   ÁREA DE CONTATO E FORMULÁRIOS
-   ========================================================================= */
-.contato-container { max-width: 480px; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; font-size: 0.95rem; color: var(--texto-claro); margin-bottom: 4px; }
-
-.form-control { 
-    width: 100%; 
-    padding: 10px 14px; 
-    border: 2px solid var(--texto-claro); 
     background-color: #ffffff; 
-    border-radius: 8px; 
-    font-family: inherit; 
-    font-size: 1rem; 
-    color: var(--texto-claro); 
-}
-textarea.form-control { min-height: 110px; resize: vertical; }
-
-.btn-submit { 
-    background-color: #FFAEE3; 
-    color: #1A1D1A; 
-    border: 2px solid var(--texto-claro); 
-    padding: 10px 22px; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-size: 1rem;
-    font-family: inherit;
-    box-shadow: 3px 3px 0px var(--texto-claro);
-    transition: all 0.2s ease;
-}
-.btn-submit:hover { 
-    background-color: var(--roxo-principal); 
-    color: white;
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px var(--texto-claro);
+    transition: transform 0.2s;
 }
 
-body.modo-hacker .btn-submit { 
-    background: none; 
-    color: var(--roxo-principal); 
-    border-color: var(--roxo-principal);
-    box-shadow: none;
+.project-card-link:hover .project-card {
+    transform: scale(1.02);
 }
 
-/* RODAPÉ */
-.contador-cliques { text-align: center; padding: 40px; font-size: 1rem; color: var(--texto-mutado); }
-
-/* ==========================================================================
-   CD EM CORES SÓLIDAS GERADO VIA CSS
-   ========================================================================== */
-.player-icone-gatilho#playerGatilho {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    width: 70px !important;
-    height: 70px !important;
-    min-width: 70px !important;
-    min-height: 70px !important;
-    border-radius: 50% !important;
-    border: 3px solid #1A1D1A !important;
-    box-shadow: 4px 4px 0px #1A1D1A !important;
-    z-index: 999999 !important;
-    cursor: pointer !important;
-    
-    background: radial-gradient(
-        circle,
-        #1A1D1A 0% 15%,         
-        #ffffff 15% 24%,        
-        #4A90E2 24% 45%,        
-        #7ED321 45% 64%,        
-        #E05EA3 64% 83%,        
-        #9B9B9B 83% 100%        
-    ) !important;
-    
-    animation: rodarCDSolido 7s linear infinite !important;
-    transition: transform 0.2s ease !important;
-}
-
-@keyframes rodarCDSolido {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.player-icone-gatilho#playerGatilho:hover {
-    transform: scale(1.08) !important;
-}
-
-body.modo-hacker .player-icone-gatilho#playerGatilho {
-    background: radial-gradient(circle, #020202 0% 25%, #00ff41 25% 100%) !important;
-    border-color: #00ff41 !important;
-    box-shadow: 0px 0px 12px #00ff41 !important;
-}
-
-/* ==========================================================================
-   JANELA DO EMBED PLAYER DE VÍDEO (POP-UP)
-   ========================================================================== */
-.janela-player {
-    position: fixed;
-    bottom: 100px; 
-    right: 20px;
-    background: var(--player-bg);
-    border: 2px solid var(--texto-claro);
-    border-radius: 14px;
-    width: 300px;
-    padding: 14px;
-    box-shadow: 6px 6px 0px var(--texto-claro);
-    z-index: 9999;
-    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-origin: bottom right;
-}
-
-.janela-player.esconde-player {
-    opacity: 0 !important;
-    transform: scale(0) !important;
-    pointer-events: none !important;
-}
-
-body.modo-hacker .janela-player {
-    box-shadow: none;
-    border-color: var(--roxo-principal);
-}
-
-.barra-superior {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.titulo-phoning {
-    background: var(--player-titulo-bg);
-    border: 1px solid var(--texto-claro);
-    border-radius: 100px;
-    padding: 4px 12px;
-    font-size: 0.9rem;
-    color: var(--texto-claro);
-}
-
-body.modo-hacker .titulo-phoning { border-color: var(--roxo-principal); }
-
-.botoes-janela { display: flex; gap: 4px; }
-
-.botao-controle {
-    border: 1px solid var(--texto-claro);
-    background-color: #FFFFFF;
-    border-radius: 4px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: #000000;
-    cursor: pointer;
-    user-select: none;
-}
-
-body.modo-hacker .botao-controle {
-    background-color: transparent;
-    color: var(--roxo-principal);
-    border-color: var(--roxo-principal);
-}
-
-.container-video-embed {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 2px solid var(--texto-claro);
-    border-radius: 12px;
-    overflow: hidden;
-    background: #000000;
+.project-card h3 {
+    color: var(--text-color) !important;
+    font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
-body.modo-hacker .container-video-embed { border-color: var(--roxo-principal); }
-.container-video-embed iframe { width: 100%; height: 100%; display: block; }
+/* Descrição dos Projetos em Arial e Bold */
+.project-card p {
+    font-family: 'Arial', sans-serif !important;
+    font-weight: bold !important;
+    color: var(--text-color) !important;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
 
-.menu-playlist {
+/* Etiquetas de Tecnologia */
+.tech-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.tag {
+    font-size: 0.8rem;
+    border: 1px solid var(--borda-color);
+    padding: 3px 10px;
+    border-radius: 20px;
+    background-color: var(--rosa-botao);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* ==========================================
+   6. FORMULÁRIO DE CONTATO & SKILLS
+   ========================================== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels do formulário seguem a regra Arial + Bold */
+.form-group label {
+    font-family: 'Arial', sans-serif !important;
+    font-weight: bold !important;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.form-control {
+    font-family: 'Arial', sans-serif !important;
+    font-weight: bold !important;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--borda-color);
+    background-color: #ffffff;
+    color: var(--text-color);
+    border-radius: 8px;
+}
+
+textarea.form-control {
+    height: 90px;
+    resize: vertical;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--rosa-botao);
+    color: var(--text-color);
+    border: 2px solid var(--borda-color);
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: var(--rosa-hover);
+}
+
+/* Pílulas Laterais de Skills */
+.skills-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pill {
+    background-color: var(--rosa-botao);
+    border: 2px solid var(--borda-color);
+    color: var(--text-color);
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* ==========================================
+   7. RODAPÉ E EXTRA
+   ========================================== */
+.contador-cliques {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--rosa-botao);
+    border-top: 2px solid var(--borda-color);
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    z-index: 999;
+}
+
+.player-icone-gatilho {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--rosa-botao);
+    border: 2px solid var(--borda-color);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.janela-player {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    width: 320px;
+    background-color: var(--bloco-bg);
+    border: 2px solid var(--borda-color);
+    z-index: 2000;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    max-height: 110px;
+}
+
+.janela-player.esconde-player {
+    display: none !important;
+}
+
+.barra-superior {
+    background-color: var(--text-color);
+    color: var(--bloco-bg);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.container-video-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.container-video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-playlist {
+    background-color: var(--bloco-bg);
+    max-height: 120px;
     overflow-y: auto;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE GERAL (MOBILE)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .folha-caderno { padding: 40px 20px; transform: none !important; clip-path: none !important; }
-    .folha-caderno::after { display: none; }
-    .sistema-espiral { display: none; }
-    .player-icone-gatilho#playerGatilho { bottom: 15px !important; right: 15px !important; width: 60px !important; height: 60px !important; min-width: 60px !important; min-height: 60px !important; }
-    .janela-player { bottom: 90px; right: 15px; width: 260px; }
+.item-track {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    cursor: pointer;
 }
